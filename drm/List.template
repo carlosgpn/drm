@@ -1,0 +1,107 @@
+// NOTE: "Class View" does not let you access this template file
+// within .NET developer studio. Use "Solution Explorer" instead!
+
+
+
+// default constructor (just in case, it is always safer to have one)
+// this one creates an empty bag of DEFAULT capacity
+template <class Item>
+List<Item> :: List() {
+	m_max_capacity = MAX_LIST;
+    m_container = new Item[m_max_capacity];
+    m_size = 0;
+} 
+
+// constructor builds a bag with the ability to hold
+// max_capacity of items; the bag is initially empty 
+template <class Item>
+List<Item> :: List(unsigned int capacity) {
+	m_max_capacity = capacity;
+    m_container = new Item[m_max_capacity];
+    m_size = 0;
+} 
+
+// destructor destroys the bag by recycling the memory it used
+template <class Item>
+List<Item> :: ~List( ) {
+	
+	
+}
+
+template <class Item>
+bool List<Item> :: isEmpty( ) const {
+    return (m_size == 0);
+}
+
+template <class Item>
+bool List<Item> :: isFull( ) const {
+    return false;
+}                                                                                        // cont’d..
+
+template <class Item>
+unsigned int List<Item> :: getLength( ) const {
+    return m_size;
+}
+
+template <class Item>
+bool List<Item> :: insert(unsigned int pos, Item item) {
+	if ((pos < 1) || (pos > m_size+1))     // || item == NULL)
+        return false;
+    if (m_size == m_max_capacity)
+        replaceContainer( );
+    for (unsigned int k = m_size; k >= pos; k--)
+        m_container[translate(k+1)] = m_container[translate(k)];
+    m_container[translate(pos)] =  item;
+    m_size++;
+    return true;
+}
+
+template <class Item>
+Item List<Item> :: remove (unsigned int pos) {
+    if ( isEmpty( ) || (pos < 1) || (pos > m_size))
+        return NULL;
+    Item returnValue = m_container[translate(pos)];
+    for (unsigned int k=pos+1; k<=m_size; k++)
+        m_container[translate(k-1)] = m_container[translate(k)];
+    m_size--;
+    return returnValue;
+} 
+
+
+template <class Item>
+Item List<Item> :: retrieve(unsigned int pos) const {
+    if ((pos < 1) || (pos > m_size))
+        return NULL;
+    return m_container[translate(pos)];
+}
+
+template <class Item>
+Item List<Item> :: replace( unsigned int pos, Item item ) {
+	if ( (pos < 1) || (pos > m_size+1) || item == NULL) return NULL;
+	if ( pos == m_size+1 ) { insert( pos, item ); return NULL; }
+	
+	Item returnVal = m_container[translate(pos)];
+    m_container[translate(pos)] = item;
+    return returnVal;
+}
+
+template <class Item>
+bool List<Item> :: append(Item item) {
+	return insert(m_size+1,item);
+}
+
+template <class Item>
+unsigned int List<Item> :: translate(unsigned int pos) const {
+    return pos-1;
+}
+
+template <class Item>
+void List<Item> :: replaceContainer( ) {
+    Item * newList;
+    newList = new Item[2 * m_max_capacity];
+    for (unsigned int k = 0; k < m_size; k++ )
+		newList[k] = m_container[k];
+    m_max_capacity = 2 * m_max_capacity;
+    delete [ ] m_container;
+    m_container = newList;
+}

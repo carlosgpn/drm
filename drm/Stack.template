@@ -1,0 +1,51 @@
+// NOTE: "Class View" does not let you access this template file
+// within .NET developer studio. Use "Solution Explorer" instead!
+
+
+
+template <class Item>
+Stack1<Item> :: Stack1( ) {
+     m_size = 0;
+     m_container = new List<Item>( );
+} 
+ 
+template <class Item>
+Stack1<Item> :: Stack1(unsigned int capacity) {
+     m_size = 0;
+     m_container = new List<Item>(capacity);
+} 
+ 
+template <class Item>
+Stack1<Item> :: ~Stack1( ){
+     delete m_container;
+}
+
+template <class Item>
+bool Stack1<Item> :: isEmpty() const {
+    return m_size == 0;
+}
+
+template <class Item>
+bool Stack1<Item> :: isFull( ) const {
+    return false;
+}
+ 
+template <class Item>
+void Stack1<Item> :: push(Item k) {
+     m_size++;
+     m_container->insert( m_size, k );
+}
+ 
+template <class Item>
+Item Stack1<Item> :: pop( ) {
+     if (isEmpty( )) return NULL;
+     Item s = m_container->remove(m_size);
+     m_size--;
+     return s;
+}
+
+template <class Item>
+Item Stack1<Item> :: peek( ) const{
+      if (isEmpty( )) return NULL;
+      return m_container->retrieve(m_size);
+}
