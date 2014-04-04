@@ -24,7 +24,7 @@ class Segmentation;
 #include <sys/stat.h>
 
 #define DEBUG false
-#define TESTING false
+#define TESTING true
 
 
 std::string cexec(char* cmd) {
@@ -57,10 +57,7 @@ bool applyDRM( const char * filepath, const char * filename, float sigma, float 
 int main(int argc, const char * argv[])
 {
     
-    //TODO <output>/<ppm_name>/<num_compo>/00001.ppm
-    
     if(TESTING){
-    
         
         
     }else if (argc < 6) {
@@ -77,14 +74,14 @@ int main(int argc, const char * argv[])
     }
     
     //inputs
-    std::string ip("/Users/carlos/Documents/PUC/Monografia/benchmark/input");
-	std::string op("/Users/carlos/Documents/PUC/Monografia/benchmark/output");
+    std::string ip("/Volumes/Macintosh HD 2/Users/carlos/Documents/PUC/Monografia/benchmark/input");
+	std::string op("/Volumes/Macintosh HD 2/Users/carlos/Documents/PUC/Monografia/benchmark/output");
     
     const char * input_path = ip.c_str();
 	const char * output_path = op.c_str();
     
     std::string d1("1.0");
-	std::string d2("0.2");
+	std::string d2("0.1");
     
     float sigma = 0.5;
     float k = 100;
@@ -99,7 +96,6 @@ int main(int argc, const char * argv[])
     struct stat st;
     
     int num_frames, len;
-    
     
     //dir initialization
     if (stat(output_path, &st) != 0) {
@@ -122,7 +118,7 @@ int main(int argc, const char * argv[])
                     
                     if(!applyDRM( input_path, pDirent->d_name , sigma, k, min_size, delta1, delta2, output_path )){
                         printf("<< exception!");
-                        return 1;
+                        //return 1;
                     }
                     
                     i++;
@@ -147,6 +143,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
     
     //image initialization
     std::string m_imName(filename);
+    
     image<rgb>* m_image = loadPPM(input_file);
     
     
@@ -157,6 +154,10 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
         
         printf("invalid input image %s !", filename );
         printf("\n");
+        
+        delete m_image;
+        m_image = NULL;
+        
         return false;
         
     }else{
@@ -165,9 +166,13 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
         printf(">>> segmenting %s\n", m_imName.c_str());
         
         int num_ccs;
-        image<rgb>* m_image_seg = segment_image(m_image, sigma, k, min_size, &num_ccs);
+       image<rgb>* m_image_seg = segment_image(m_image,
+                                                sigma,
+                                                k,
+                                                min_size,
+                                                &num_ccs);
         
-        if ( false ) {
+       if ( false ) {
             
             printf("invalid segmentation image!\n");
             return false;
@@ -176,7 +181,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             
             printf("got %d components on gb\n", num_ccs);
             
-            m_seg = (Segmentation *) new Segmentation(m_image);
+             m_seg = (Segmentation *) new Segmentation(m_image);
             
             m_seg->pmiss = 0.03;
             m_seg->pfa = 0.03;
@@ -190,7 +195,22 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             printf("building the blocks ...\n");
             m_seg->BuildBlocks();
             
-            int num_comp;
+            
+           /* m_seg->DeletePreheaders();
+            
+            delete m_seg;
+            
+            delete m_image_seg;
+            m_image_seg = NULL;
+            
+            delete m_image;
+            m_image = NULL;
+            
+            
+            return true;*/
+            
+            
+          int num_comp;
             
             printf("starting the region merging...\n");
             //image<rgb> *im_result = m_seg->RegionMerging(num_comp);
@@ -261,16 +281,29 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
                 
             }
             
+            while(!im_result.isEmpty())
+            {
+                image<rgb>* back = im_result.retrieveLast();
+                
+                delete back;
+                
+                im_result.removeLast();
+            }
+            
+            im_result.clear();
+            
             m_seg->DeletePreheaders();
             
             delete m_seg;
             
-            m_seg = NULL;
-            m_image = NULL;
-            
-            
         }
         
+        delete m_image_seg;
+        m_image_seg = NULL;
+        
+        delete m_image;
+        m_image = NULL;
+       
     }
     
     return true;

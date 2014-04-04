@@ -30,7 +30,7 @@ public:
     double GetX() const;
     double GetY() const;
     
-
+    
     
     void Print();
     
@@ -65,4 +65,3 @@ public:
     friend std::istream& operator>>( std::istream&, CPoint&);
     
 };
-

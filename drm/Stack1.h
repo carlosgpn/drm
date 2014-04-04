@@ -22,9 +22,8 @@ bool isFull( ) const;
      // return the top value without modifying the stack; if the 
      // stack is empty, return NULL instead  
 
-	 unsigned int getSize() const {return m_size;}
+    unsigned int getSize();
 private:
-     unsigned int  m_size;
      List<Item> * m_container;
      
 };

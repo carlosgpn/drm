@@ -20,35 +20,35 @@ public:
 	Segmentation(image<rgb> * im); //Initializes a contour, links with an image
 public:
 	~Segmentation(void);
-
+    
 public:
 	Stack1<CPoint> active;   // stored unextented points, used for finding independent components
 	
 	image<rgb> * m_im;
 	float w;
-	float w1;   
-	 
-	List<List<CPoint>*> blocks;   
+	float w1;
+    
+	List<List<CPoint>*> blocks;
 	List<int> labels;
-	List<List<int>*> neibor;    
-	List<List<int>*> allneibor;  	 
-	 
-	double **m_diff;               
-	List<int> **diff;	 
- 
+	List<List<int>*> neibor;
+	List<List<int>*> allneibor;
+    
+	double **m_diff;
+	List<int> **diff;
+    
 	CPoint p,q,s;
 	CPoint m_point;
 	//CRect m_rect;
-	int **count;  
+	int **count;
 	CPoint p1,p2;
-	 	 
-	int **mask;  
-	int row,col;	 
-	float *max_inter;   // inner object average intensity 	 
-	 
+    
+	int **mask;
+	int row,col;
+	float *max_inter;   // inner object average intensity
+    
 	int h[256];
 	int num_node;
- 	 
+    
 	float *reg_ave_r;
 	float *reg_ave_b;
 	float *reg_ave_g;
@@ -58,16 +58,16 @@ public:
 	image<rgb> * normalized_image;
 	image<rgb> * m_org;
 	std::string imagename;
- 
+    
 	int ** label_image;
  	
 	std::string m_segimage;
- 
+    
 	int *blockmask;
-	 
-	List<List<int>*> iter_blocks;    
+    
+	List<List<int>*> iter_blocks;
 	List<List<int>*> iter_neibors_consis;
-
+    
 	float pmiss;
 	float pfa;
 	float delta1;

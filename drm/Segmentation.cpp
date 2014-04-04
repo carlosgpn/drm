@@ -14,7 +14,6 @@
 // random color
 rgb _random_rgb(){
     rgb c;
-    double r;
     
     c.r = (uchar)random();
     c.g = (uchar)random();
@@ -93,24 +92,20 @@ void Segmentation::LoadImages( image<rgb> *meanshift_image_i, image<rgb> *m_org_
 		printf("Can't open image original");
     }
     
-    
-    
 }
 
 void Segmentation::BuildBlocks(void)
 {
-//	if(m_org->m_color == GRAY)
-//        printf("gray image!");
-//	else
-//        printf("color image!");
+    //	if(m_org->m_color == GRAY)
+    //        printf("gray image!");
+    //	else
+    //        printf("color image!");
     
 	Stack1<CPoint> active;
 	
-	bool newlabel = false;
 	bool n = false;
-	int cnt=0;
-	int cnt1=0;
-	CPoint point;
+	
+    CPoint point;
 	m_w = meanshift_image->width();
 	m_h = meanshift_image->height();
     
@@ -152,7 +147,8 @@ void Segmentation::BuildBlocks(void)
 				{
 					seed.x = p.x; seed.y = p.y;
 					blocks.append(new List<CPoint>);
-					blocks.retrieveLast()->append(seed);
+					blocks.retrieveLast()
+                    ->append(seed);
 					label_image[seed.y][seed.x] = blocks.getLength();
 					break;
 				}
@@ -163,7 +159,7 @@ void Segmentation::BuildBlocks(void)
 		mask[seed.y][seed.x] = 1; size--;
 		while(!active.isEmpty()) //’“µΩ÷÷◊”µ„À˘‘⁄µƒcomponent
         {
-         //   printf("%d\n", size);
+            //   printf("%d\n", size);
             p = active.pop();
             for(int i=1;i<5;i++)
             {
@@ -185,7 +181,6 @@ void Segmentation::BuildBlocks(void)
         }
 		seed.x = -1; seed.y = -1;
 	}
-	
     
     /********************************finish build blocks************************************\
      \***************************************************************************************/
@@ -211,7 +206,7 @@ void Segmentation::BuildBlocks(void)
                 q.x = (p + shift[k]).x;
                 q.y = (p + shift[k]).y;
                 if(label_image[i][j] != label_image[q.y][q.x])
-                { n = true;cnt = k;}
+                { n = true;}
                 
                 if(n == true)
                 {
@@ -235,10 +230,6 @@ void Segmentation::BuildBlocks(void)
                 }
             }
         }
-//	printf("**************************************************************\n");
-//	printf("The number of regions: %d\n",allneibor.getLength());
-//	printf("**************************************************************\n");
-//    
     
 	for(int i=0;i<m_h;i++)
 		delete [] mask[i];
@@ -261,9 +252,9 @@ void Segmentation::BuildBlocks(void)
 		for(int j=1;j<=blocks.retrieve(i)->getLength();j++)
 		{
 			p = blocks.retrieve(i)->retrieve(j);
-				ave = ave + m_org->access[p.y][p.x].r;
-				ave1 = ave1 + m_org->access[p.y][p.x].g;
-				ave2 = ave2 + m_org->access[p.y][p.x].b;
+            ave = ave + m_org->access[p.y][p.x].r;
+            ave1 = ave1 + m_org->access[p.y][p.x].g;
+            ave2 = ave2 + m_org->access[p.y][p.x].b;
 		}
 		ave = ave/blocks.retrieve(i)->getLength();
         
@@ -274,23 +265,18 @@ void Segmentation::BuildBlocks(void)
         reg_ave_b[i-1] = ave2;
 		
 	}
-    
+
+	   
 }
 
 List<image<rgb>*> Segmentation::RegionMerging(int &components)
 {
 	int curr_blocklength;
 	bool combine = false;
-	double bha,mean;
 	float *ave_block_r,*ave_block_g,*ave_block_b;
-	float m1,m2;    //¡Ω∏ˆøÈº∆À„µ√µΩµƒ◊Ó–°measure
 	int num;
 	int tmp;
     
-	int trial_count = 0;
-	int big_block;
-	int red1,green1,blue1;
-	int red2,green2,blue2;
 	int which_neibor1;
 	int which_neibor2;
 	List<List<int>*> iter_neibors;
@@ -307,7 +293,7 @@ List<image<rgb>*> Segmentation::RegionMerging(int &components)
     
     for (int i = 0; i < 500; i++)
         colors[i] = _random_rgb();
-
+    
     
 	// ********************* initialization********************************************
 	
@@ -621,74 +607,74 @@ List<image<rgb>*> Segmentation::RegionMerging(int &components)
                         
                         while(iter_blocks.retrieve(block_b)->getLength()>1)
                             iter_blocks.retrieve(block_b)->removeLast();
-                    
-                    
+                        
+                        
                         if(DEBUG){
-                        
-                        int **map;
-                        
-                        map = (int **) new int*[m_org->height()];
-                        for (int j=0; j<m_org->height(); j++) map[j] = (int *) new int[m_org->width()];
-                        
-                        for(int j=0;j<m_org->height();j++)
-                            for(int k=0;k<m_org->width();k++)
-                                map[j][k] = 0;
-                        
-                        for(int j=1;j<=iter_blocks.getLength();j++)
-                        {
-                            if(iter_blocks.retrieve(j)->getLength()>1)
+                            
+                            int **map;
+                            
+                            map = (int **) new int*[m_org->height()];
+                            for (int j=0; j<m_org->height(); j++) map[j] = (int *) new int[m_org->width()];
+                            
+                            for(int j=0;j<m_org->height();j++)
+                                for(int k=0;k<m_org->width();k++)
+                                    map[j][k] = 0;
+                            
+                            for(int j=1;j<=iter_blocks.getLength();j++)
                             {
-                                for(int k=2;k<=iter_blocks.retrieve(j)->getLength();k++)
+                                if(iter_blocks.retrieve(j)->getLength()>1)
                                 {
-                                    tmp = iter_blocks.retrieve(j)->retrieve(k);
-                                    for(int l=1;l<=blocks.retrieve(tmp)->getLength();l++)
+                                    for(int k=2;k<=iter_blocks.retrieve(j)->getLength();k++)
                                     {
-                                        p = blocks.retrieve(tmp)->retrieve(l);
-                                        map[p.y][p.x] = iter_blocks.retrieve(j)->retrieve(1);
-                                        
-                                        //pseudocolor
-                                        if(block_a == j){
-                                            imRef(im_result, p.x, p.y) = colors[j];
-                                        }else{
-                                            imRef(im_result,  p.x, p.y).r = (uchar) 255;
-                                            imRef(im_result,  p.x, p.y).g = (uchar) 255;
-                                            imRef(im_result,  p.x, p.y).b = (uchar) 255;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
-                        
-                        for(int j=0; j<m_org->height();j++)
-                            for(int k=0;k<m_org->width();k++)
-                            {
-                                q.x = k; q.y = j;
-                                {
-                                    for(int l=2;l<=3;l++)
-                                    {
-                                        p = q + shift[l];
-                                        
-                                        if(p.x>=0&&p.y>=0&&p.x<m_org->width()&&p.y<m_org->height())
+                                        tmp = iter_blocks.retrieve(j)->retrieve(k);
+                                        for(int l=1;l<=blocks.retrieve(tmp)->getLength();l++)
                                         {
-                                            if(map[p.y][p.x] != map[q.y][q.x])
-                                            {
-                                                imRef(im_result, (q).x, (q).y).r = (uchar) 0;
-                                                imRef(im_result, (q).x, (q).y).g = (uchar) 0;
-                                                imRef(im_result, (q).x, (q).y).b = (uchar) 0;
+                                            p = blocks.retrieve(tmp)->retrieve(l);
+                                            map[p.y][p.x] = iter_blocks.retrieve(j)->retrieve(1);
+                                            
+                                            //pseudocolor
+                                            if(block_a == j){
+                                                imRef(im_result, p.x, p.y) = colors[j];
+                                            }else{
+                                                imRef(im_result,  p.x, p.y).r = (uchar) 255;
+                                                imRef(im_result,  p.x, p.y).g = (uchar) 255;
+                                                imRef(im_result,  p.x, p.y).b = (uchar) 255;
                                             }
                                         }
                                     }
                                 }
                             }
-                        
-                        
-                        for(int ii=0;ii<m_org->height();ii++) delete [] map[ii];
-                        delete [] map;
-                        
-
-                        frames.append(im_result->copy());
-                        
+                            
+                            
+                            for(int j=0; j<m_org->height();j++)
+                                for(int k=0;k<m_org->width();k++)
+                                {
+                                    q.x = k; q.y = j;
+                                    {
+                                        for(int l=2;l<=3;l++)
+                                        {
+                                            p = q + shift[l];
+                                            
+                                            if(p.x>=0&&p.y>=0&&p.x<m_org->width()&&p.y<m_org->height())
+                                            {
+                                                if(map[p.y][p.x] != map[q.y][q.x])
+                                                {
+                                                    imRef(im_result, (q).x, (q).y).r = (uchar) 0;
+                                                    imRef(im_result, (q).x, (q).y).g = (uchar) 0;
+                                                    imRef(im_result, (q).x, (q).y).b = (uchar) 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                            
+                            for(int ii=0;ii<m_org->height();ii++) delete [] map[ii];
+                            delete [] map;
+                            
+                            
+                            frames.append(im_result->copy());
+                            
                         }
                         
                         
@@ -774,7 +760,7 @@ List<image<rgb>*> Segmentation::RegionMerging(int &components)
     frames.append(im_result->copy());
     
     
-    	// clear
+    // clear
 	tmp = iter_blocks.getLength();
     
     while(!iter_blocks.isEmpty())
@@ -825,17 +811,13 @@ float Segmentation::CueEnhancement(int block, int neighbor, int sign)
 	float ave_r2,ave_g2,ave_b2;
 	float ave_r3,ave_g3,ave_b3;
 	float npixel1;
-	float var_r,var_g,var_b;
 	float mean_r1,mean_g1,mean_b1;
 	float mean_r2,mean_g2,mean_b2;
-	float var1,var2,var_random;
 	int counter_n = 0;
 	int counter = 0;
 	int n0 = 1;   // upper bound on the number of tests
-	int Cm;
 	int m1 = iter_blocks.retrieve(block)->getLength()*0.4 + 1;
 	int m2 = iter_blocks.retrieve(neighbor)->getLength()*0.4 + 1;
-	int m = min(m1,m2);
 	List<int> ran1;
 	List<int> ran2;
 	int *calculate;
@@ -1144,26 +1126,97 @@ int Segmentation::RandomNum(int size)
 	return num;
 }
 
+
 void Segmentation::DeletePreheaders(void)
 {
-	delete [] reg_ave_r;
-	delete [] reg_ave_g;
-	delete [] reg_ave_b;
+    //clean contructor
+    delete im_result;
     
-	delete im_result;
-	delete meanshift_image;
-    delete m_org;
+    //cleaning building blocks
     
-	while(!blocks.isEmpty())
+    for(int i=0;i<m_h;i++)
+		delete [] label_image[i];
+	delete []label_image;
+    
+    while(!blocks.isEmpty())
 	{
-		while(!blocks.retrieveLast()->isEmpty())
-			blocks.retrieveLast()->removeLast();
-		delete blocks.removeLast();
-	}
+        List<CPoint>* back = blocks.retrieveLast();
+        
+        back->clear();
+        delete back;
+        
+        blocks.removeLast();
+    }
     
-	int len = allneibor.getLength();
-	for(int i=1;i<=len;i++)
-		while(!allneibor.retrieve(i)->isEmpty())
-			allneibor.retrieve(i)->removeLast();
-}
+    blocks.clear();
+    
+    while(!allneibor.isEmpty())
+	{
+        List<int>* back = allneibor.retrieveLast();
+        
+        back->clear();
+        delete back;
+        
+        allneibor.removeLast();
+    }
 
+    allneibor.clear();
+    allneibor = NULL;
+    
+    //end cleaning building blocks
+    
+    //cleaning region merging
+    
+    delete [] reg_ave_r;
+    delete [] reg_ave_g;
+    delete [] reg_ave_b;
+    
+    delete []blockmask;
+    
+    labels.clear();
+    
+    while(!neibor.isEmpty())
+	{
+        List<int>* back = neibor.retrieveLast();
+        
+        back->clear();
+        delete back;
+        
+        neibor.removeLast();
+    }
+    
+    p = NULL;
+    q = NULL;
+    s = NULL;
+    m_point = NULL;
+    p1 = NULL;
+    p2 = NULL;
+    
+    while(!iter_blocks.isEmpty())
+	{
+        List<int>* back = iter_blocks.retrieveLast();
+        
+        back->clear();
+        delete back;
+        
+        iter_blocks.removeLast();
+    }
+    
+    iter_blocks.clear();
+    
+    while(!iter_neibors_consis.isEmpty())
+	{
+        List<int>* back = iter_neibors_consis.retrieveLast();
+        
+        back->clear();
+        delete back;
+        
+        iter_neibors_consis.removeLast();
+    }
+    
+    iter_neibors_consis.clear();
+    
+    
+    //end region merging
+    
+}

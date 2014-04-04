@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "404736416.809808"
+            timestampString = "418290209.979853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "405903526.35335"
+            timestampString = "418290209.979853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/main.cpp"
+            timestampString = "418290209.979853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
             landmarkType = "7">
             <Locations>
@@ -40,13 +56,13 @@
                   continueAfterRunningActions = "No"
                   symbolName = "applyDRM(char const*, char const*, float, float, int, float, float, char const*)"
                   moduleName = "drm"
-                  urlString = "file:///Users/carlos/Documents/PUC/Monografia/drm_code/drm/drm/main.cpp"
-                  timestampString = "404736416.83477"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/main.cpp"
+                  timestampString = "418262977.905755"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206"
-                  offsetFromSymbolStart = "2347">
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "1405">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -54,13 +70,41 @@
                   continueAfterRunningActions = "No"
                   symbolName = "applyDRM(char const*, char const*, float, float, int, float, float, char const*)"
                   moduleName = "drm"
-                  urlString = "file:///Users/carlos/Documents/PUC/Monografia/drm_code/drm/drm/main.cpp"
-                  timestampString = "404736416.835219"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/main.cpp"
+                  timestampString = "418262977.906011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206"
-                  offsetFromSymbolStart = "2615">
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "2024">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "applyDRM(char const*, char const*, float, float, int, float, float, char const*)"
+                  moduleName = "drm"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/main.cpp"
+                  timestampString = "418262977.906231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "2206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "applyDRM(char const*, char const*, float, float, int, float, float, char const*)"
+                  moduleName = "drm"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/main.cpp"
+                  timestampString = "418262977.90646"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "2257">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -71,14 +115,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "drm/Segmentation.cpp"
-            timestampString = "405909330.467936"
+            filePath = "drm/main.cpp"
+            timestampString = "418290209.979853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "809"
-            endingLineNumber = "809"
-            landmarkName = "Segmentation::RegionMerging(int &amp;components)"
-            landmarkType = "5">
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -87,44 +131,138 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "drm/Segmentation.cpp"
-            timestampString = "405908953.670209"
+            filePath = "drm/List.template"
+            timestampString = "418283767.875089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "Segmentation::RegionMerging(int &amp;components)"
-            landmarkType = "5">
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "insert(unsigned int pos, Item item)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/List.template"
+            timestampString = "418283767.875089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "append(Item item)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/List.template"
+            timestampString = "418283767.875089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "append(Item item)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Segmentation::RegionMerging(int&amp;)"
+                  symbolName = "List&lt;List&lt;CPoint&gt;*&gt;::append(List&lt;CPoint&gt;*)"
                   moduleName = "drm"
-                  urlString = "file:///Users/carlos/Documents/PUC/Monografia/drm_code/drm/drm/Segmentation.cpp"
-                  timestampString = "404737783.278572"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/List.template"
+                  timestampString = "418282906.520635"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
-                  offsetFromSymbolStart = "139">
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "404">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Segmentation::RegionMerging(int&amp;)"
+                  symbolName = "List&lt;List&lt;int&gt;*&gt;::append(List&lt;int&gt;*)"
                   moduleName = "drm"
-                  urlString = "file:///Users/carlos/Documents/PUC/Monografia/drm_code/drm/drm/Segmentation.cpp"
-                  timestampString = "404737783.278936"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/List.template"
+                  timestampString = "418282906.520881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
-                  offsetFromSymbolStart = "807">
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "404">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "List&lt;image&lt;rgb&gt;*&gt;::append(image&lt;rgb&gt;*)"
+                  moduleName = "drm"
+                  urlString = "file://localhost/Volumes/Macintosh%20HD%202/Users/carlos/git/drm/drm/List.template"
+                  timestampString = "418282906.521119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "404">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/Segmentation.cpp"
+            timestampString = "418290209.979853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "Segmentation::BuildBlocks(void)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/main.cpp"
+            timestampString = "418290209.979853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drm/main.cpp"
+            timestampString = "418290209.979853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

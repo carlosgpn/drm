@@ -196,4 +196,3 @@ istream& operator>>( istream& input, CPoint& P) {
     return input;
 	
 }
-

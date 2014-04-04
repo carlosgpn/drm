@@ -2,14 +2,12 @@
 // within .NET developer studio. Use "Solution Explorer" instead!
 
 
-
 // default constructor (just in case, it is always safer to have one)
 // this one creates an empty bag of DEFAULT capacity
 template <class Item>
 List<Item> :: List() {
-	m_max_capacity = MAX_LIST;
-    m_container = new Item[m_max_capacity];
-    m_size = 0;
+	m_container = std::vector<Item>();
+   
 } 
 
 // constructor builds a bag with the ability to hold
@@ -17,20 +15,24 @@ List<Item> :: List() {
 template <class Item>
 List<Item> :: List(unsigned int capacity) {
 	m_max_capacity = capacity;
-    m_container = new Item[m_max_capacity];
-    m_size = 0;
+    m_container = std::vector<Item>();
+   
 } 
 
 // destructor destroys the bag by recycling the memory it used
 template <class Item>
 List<Item> :: ~List( ) {
 	
-	
+}
+
+template <class Item>
+void List<Item> :: clear(){
+    m_container.clear();
 }
 
 template <class Item>
 bool List<Item> :: isEmpty( ) const {
-    return (m_size == 0);
+    return m_container.empty();
 }
 
 template <class Item>
@@ -40,68 +42,77 @@ bool List<Item> :: isFull( ) const {
 
 template <class Item>
 unsigned int List<Item> :: getLength( ) const {
-    return m_size;
+    return m_container.size();
 }
 
 template <class Item>
 bool List<Item> :: insert(unsigned int pos, Item item) {
-	if ((pos < 1) || (pos > m_size+1))     // || item == NULL)
+	if ((pos < 1) || (pos > getLength( )+1))     // || item == NULL)
         return false;
-    if (m_size == m_max_capacity)
-        replaceContainer( );
-    for (unsigned int k = m_size; k >= pos; k--)
-        m_container[translate(k+1)] = m_container[translate(k)];
-    m_container[translate(pos)] =  item;
-    m_size++;
+    
+    if(pos > getLength( )){
+        m_container.resize(getLength( ) + m_max_capacity);
+    }
+    
+    m_container.insert(m_container.begin() + (pos - 1),item);
+    
     return true;
 }
 
 template <class Item>
 Item List<Item> :: remove (unsigned int pos) {
-    if ( isEmpty( ) || (pos < 1) || (pos > m_size))
+    if ( isEmpty( ) || (pos < 1) || (pos > getLength( )))
         return NULL;
-    Item returnValue = m_container[translate(pos)];
-    for (unsigned int k=pos+1; k<=m_size; k++)
-        m_container[translate(k-1)] = m_container[translate(k)];
-    m_size--;
-    return returnValue;
+   
+    Item ret = retrieve(pos);
+     m_container.erase(m_container.begin() + (pos - 1));
+    
+    return ret;
 } 
 
 
 template <class Item>
 Item List<Item> :: retrieve(unsigned int pos) const {
-    if ((pos < 1) || (pos > m_size))
+    if ((pos < 1) || (pos > getLength( )))
         return NULL;
-    return m_container[translate(pos)];
+    return m_container.at(pos-1);
 }
 
 template <class Item>
 Item List<Item> :: replace( unsigned int pos, Item item ) {
-	if ( (pos < 1) || (pos > m_size+1) || item == NULL) return NULL;
-	if ( pos == m_size+1 ) { insert( pos, item ); return NULL; }
-	
-	Item returnVal = m_container[translate(pos)];
-    m_container[translate(pos)] = item;
-    return returnVal;
+	if ( (pos < 1) || (pos > getLength( )+1) || item == NULL) return NULL;
+	 
+    m_container.insert(m_container.begin() + (pos - 1),item);
+    
+    return item;
 }
 
 template <class Item>
 bool List<Item> :: append(Item item) {
-	return insert(m_size+1,item);
+    
+    m_container.push_back(item);
+    
+	return this;
 }
 
-template <class Item>
-unsigned int List<Item> :: translate(unsigned int pos) const {
-    return pos-1;
-}
 
 template <class Item>
-void List<Item> :: replaceContainer( ) {
-    Item * newList;
-    newList = new Item[2 * m_max_capacity];
-    for (unsigned int k = 0; k < m_size; k++ )
-		newList[k] = m_container[k];
-    m_max_capacity = 2 * m_max_capacity;
-    delete [ ] m_container;
-    m_container = newList;
-}
+inline Item List<Item> ::removeLast() {
+    
+    Item ret = m_container.back();
+    
+    m_container.pop_back();
+    
+    return ret;
+
+}   // removes the last item in the list, if any, returns NULL otherwise
+
+template <class Item>
+inline Item List<Item> ::retrieveLast()  {
+    
+    return m_container.back();
+
+} // retreive the last item in the list, if any, returns NULL otherwise
+
+
+

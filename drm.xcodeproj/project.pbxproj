@@ -58,8 +58,8 @@
 		07A1643F17FE4260005B6CE3 /* stdafx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
 		07A1644017FE4260005B6CE3 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
 		07A1644117FE4260005B6CE3 /* targetver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = targetver.h; sourceTree = "<group>"; };
-		07A1644217FE44AC005B6CE3 /* List.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = List.template; sourceTree = "<group>"; };
-		07A1644317FE44AC005B6CE3 /* Stack.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = Stack.template; sourceTree = "<group>"; };
+		07A1644217FE44AC005B6CE3 /* List.template */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = List.template; sourceTree = "<group>"; };
+		07A1644317FE44AC005B6CE3 /* Stack.template */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = Stack.template; sourceTree = "<group>"; };
 		07A1644517FE472A005B6CE3 /* CPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPoint.h; sourceTree = "<group>"; };
 		07B8C43D180792980025EED7 /* Segmentation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segmentation.cpp; sourceTree = "<group>"; };
 		07B8C440180797790025EED7 /* CPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPoint.cpp; sourceTree = "<group>"; };

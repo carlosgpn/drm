@@ -5,13 +5,11 @@
 
 template <class Item>
 Stack1<Item> :: Stack1( ) {
-     m_size = 0;
      m_container = new List<Item>( );
 } 
  
 template <class Item>
 Stack1<Item> :: Stack1(unsigned int capacity) {
-     m_size = 0;
      m_container = new List<Item>(capacity);
 } 
  
@@ -22,7 +20,7 @@ Stack1<Item> :: ~Stack1( ){
 
 template <class Item>
 bool Stack1<Item> :: isEmpty() const {
-    return m_size == 0;
+    return m_container->isEmpty();
 }
 
 template <class Item>
@@ -32,20 +30,24 @@ bool Stack1<Item> :: isFull( ) const {
  
 template <class Item>
 void Stack1<Item> :: push(Item k) {
-     m_size++;
-     m_container->insert( m_size, k );
+    
+     m_container->append( k );
 }
  
 template <class Item>
 Item Stack1<Item> :: pop( ) {
      if (isEmpty( )) return NULL;
-     Item s = m_container->remove(m_size);
-     m_size--;
+    
+     Item s = m_container->removeLast();
+    
      return s;
 }
 
 template <class Item>
 Item Stack1<Item> :: peek( ) const{
       if (isEmpty( )) return NULL;
-      return m_container->retrieve(m_size);
+      return m_container->retrieve(m_container->getLength());
 }
+
+template <class Item>
+unsigned int Stack1<Item> :: getSize() {return m_container->getLength();}

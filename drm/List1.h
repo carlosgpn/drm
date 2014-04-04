@@ -2,8 +2,7 @@
 
 #import <cstdlib>
 
-const int MAX_LIST = 200;
-
+#include "vector"
 
 template <class Item>
 class List{
@@ -26,17 +25,17 @@ public:
 												// returns the displaced item; if pos is not a valid location 
 	                                            // or is the position immediately beyond the list’s end 
 	                                            // it returns NULL instead. 
-	
+	void clear();
 	bool append (Item item); // adds an item at the end of the list
-	inline Item removeLast()   {return remove(getLength());}   // removes the last item in the list, if any, returns NULL otherwise 
-	inline Item retrieveLast() const {return retrieve(getLength());} // retreive the last item in the list, if any, returns NULL otherwise 
+	Item removeLast();   // removes the last item in the list, if any, returns NULL otherwise
+	Item retrieveLast() ;// retreive the last item in the list, if any, returns NULL otherwise
 
 private:
-    Item * m_container; // pointer to array to hold the list
+    //Item * m_container; // pointer to array to hold the list
+    std::vector<Item> m_container;
     unsigned int m_max_capacity; // maximum capacity of the list
-    unsigned int m_size;    // number of items currently in the list
-    unsigned int translate(unsigned int pos) const; // converts a list position to the corresponding array index
-	void replaceContainer(); // private function replaces the underlying array with one that holds
+    //unsigned int translate(unsigned int pos) const; // converts a list position to the corresponding array index
+	//void replaceContainer(); // private function replaces the underlying array with one that holds
 							 // the same values as the original, but has double the capacity
 
 };
