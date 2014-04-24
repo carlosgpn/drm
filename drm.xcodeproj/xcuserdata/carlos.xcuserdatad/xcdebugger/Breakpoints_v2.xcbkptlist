@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420052920.693607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420052920.693607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420053392.338791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
             <Locations>
                <Location
@@ -116,12 +116,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420052920.693607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -240,12 +240,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420053392.338791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -256,12 +256,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "drm/main.cpp"
-            timestampString = "418290209.979853"
+            timestampString = "420053392.338791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path )"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

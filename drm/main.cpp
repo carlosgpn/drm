@@ -52,7 +52,7 @@ void cconvertimage(std::string file1 , std::string file2) {
 
 
 static bool _mkdir(const char *dir);
-bool applyDRM( const char * filepath, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path );
+bool applyDRM( const char * filepath, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor );
 
 int main(int argc, const char * argv[])
 {
@@ -74,8 +74,8 @@ int main(int argc, const char * argv[])
     }
     
     //inputs
-    std::string ip("/Volumes/Macintosh HD 2/Users/carlos/Documents/PUC/Monografia/benchmark/input");
-	std::string op("/Volumes/Macintosh HD 2/Users/carlos/Documents/PUC/Monografia/benchmark/output");
+    std::string ip("/Volumes/Macintosh HD 1/Users/carlos/Documents/PUC/Monografia/benchmark/input");
+	std::string op("/Volumes/Macintosh HD 1/Users/carlos/Documents/PUC/Monografia/benchmark/output");
     
     const char * input_path = ip.c_str();
 	const char * output_path = op.c_str();
@@ -86,9 +86,11 @@ int main(int argc, const char * argv[])
     float sigma = 0.5;
     float k = 100;
     int min_size = 50;
-
+    
 	double delta1 = ::atof(d1.c_str());
 	double delta2 = ::atof(d2.c_str());
+    
+    bool usePseudoColor = false;
     
     //vars
     DIR *pDir;
@@ -114,9 +116,9 @@ int main(int argc, const char * argv[])
             
             if (len >= 4) {
                 if (strcmp(".ppm", &(pDirent->d_name[len - 4])) == 0){
-                   
                     
-                    if(!applyDRM( input_path, pDirent->d_name , sigma, k, min_size, delta1, delta2, output_path )){
+                    
+                    if(!applyDRM( input_path, pDirent->d_name , sigma, k, min_size, delta1, delta2, output_path, usePseudoColor )){
                         printf("<< exception!");
                         //return 1;
                     }
@@ -127,12 +129,12 @@ int main(int argc, const char * argv[])
             }
         }
     }
-
+    
     
     return 1;
 }
 
-bool applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path ){
+bool applyDRM( const char * input_path, const char * filename, float sigma, float k, int min_size, float delta1, float delta2, const char * output_path, bool usePseudoColor ){
     
     Segmentation* m_seg;
 	
@@ -166,13 +168,31 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
         printf(">>> segmenting %s\n", m_imName.c_str());
         
         int num_ccs;
-       image<rgb>* m_image_seg = segment_image(m_image,
+        image<rgb>* m_image_seg = segment_image(m_image,
                                                 sigma,
                                                 k,
                                                 min_size,
-                                                &num_ccs);
+                                                &num_ccs,
+                                                usePseudoColor);
         
-       if ( false ) {
+        
+        //saves the segmentation image
+        struct stat st;
+        char savepath_seg[1024];
+        
+        snprintf(savepath_seg, 1023, "%s/%s/", output_path,m_imName.c_str());
+        
+        if (stat(savepath_seg, &st) != 0) {
+            // Directory does not exist
+            if (_mkdir(savepath_seg) != 0) {
+                fprintf(stderr,"Unable to create the segment output directories at %s",savepath_seg);
+            }
+        }
+        
+        snprintf(savepath_seg, 1023, "%s/%s/seg.ppm", output_path,m_imName.c_str());
+        savePPM(m_image_seg,savepath_seg);
+        
+        if ( false ) {
             
             printf("invalid segmentation image!\n");
             return false;
@@ -181,7 +201,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             
             printf("got %d components on gb\n", num_ccs);
             
-             m_seg = (Segmentation *) new Segmentation(m_image);
+            m_seg = (Segmentation *) new Segmentation(m_image);
             
             m_seg->pmiss = 0.03;
             m_seg->pfa = 0.03;
@@ -195,22 +215,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             printf("building the blocks ...\n");
             m_seg->BuildBlocks();
             
-            
-           /* m_seg->DeletePreheaders();
-            
-            delete m_seg;
-            
-            delete m_image_seg;
-            m_image_seg = NULL;
-            
-            delete m_image;
-            m_image = NULL;
-            
-            
-            return true;*/
-            
-            
-          int num_comp;
+            int num_comp;
             
             printf("starting the region merging...\n");
             //image<rgb> *im_result = m_seg->RegionMerging(num_comp);
@@ -226,7 +231,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             
             //dump result on respective path
             char savepath[1024];
-            struct stat st;
+            
             
             snprintf(savepath,1023,"%s/%s/%05d",output_path,m_imName.c_str(),num_comp);
             if (stat(savepath, &st) != 0) {
@@ -248,35 +253,35 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
             
             
             if(DEBUG){
-            
+                
                 //frames
                 snprintf(savepath, 1023, "%s/%s/%05d/%05d", output_path,m_imName.c_str(), num_comp, 1);
                 if (stat(savepath, &st) != 0) {
-                // Directory does not exist
+                    // Directory does not exist
                     if (_mkdir(savepath) != 0) {
                         fprintf(stderr,"Unable to create the output directories at %s",output_path);
                     }
                 }
-            
-                for(int i=1;i<=im_result.getLength();i++){
                 
+                for(int i=1;i<=im_result.getLength();i++){
+                    
                     current =  im_result.retrieve(i);
                     
                     // save the image
                     snprintf(savepath, 1023, "%s/%s/%05d/%05d/%05d.ppm", output_path,m_imName.c_str(), num_comp, 1, i);
                     savePPM(current,savepath);
-                
+                    
                     snprintf(convertresult, 1023, "%s.png", savepath);
-                
+                    
                     cconvertimage(savepath , convertresult);
                     remove(savepath);
                 }
-            
+                
                 char gifpath[1024];
-            
+                
                 snprintf(savepath, 1023, "%s/%s/%05d/%05d/*.png", output_path,m_imName.c_str(), num_comp, 1);
                 snprintf(gifpath, 1023, "%s/%s/%05d/%05d.gif", output_path,m_imName.c_str(), num_comp, 1);
-            
+                
                 cconvertimage(savepath , gifpath);
                 
             }
@@ -303,7 +308,7 @@ bool applyDRM( const char * input_path, const char * filename, float sigma, floa
         
         delete m_image;
         m_image = NULL;
-       
+        
     }
     
     return true;
