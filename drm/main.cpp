@@ -74,8 +74,8 @@ int main(int argc, const char * argv[])
     }
     
     //inputs
-    std::string ip("/Volumes/Macintosh HD 1/Users/carlos/Documents/PUC/Monografia/benchmark/input");
-	std::string op("/Volumes/Macintosh HD 1/Users/carlos/Documents/PUC/Monografia/benchmark/output");
+    std::string ip("");
+	std::string op("");
     
     const char * input_path = ip.c_str();
 	const char * output_path = op.c_str();
